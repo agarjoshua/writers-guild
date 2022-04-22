@@ -1,0 +1,1 @@
+web: gunicorn writersguild.wsgi --log-file -
