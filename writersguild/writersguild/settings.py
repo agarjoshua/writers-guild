@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    #EMAIL sending settings
+    'mailer.apps.MailerConfig'
 ]
 
 MIDDLEWARE = [
@@ -166,18 +168,19 @@ LOGOUT_REDIRECT_URL = '/account/logout/'
 
 
 #EMAIL CONFIGURATIONS FOR THE BLOG SERVICE
- # Email Settings (Development)
+ # Email Settings (Development
+
+DEFAULT_FROM_EMAIL = 'will@learndjango.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
+SERVER_EMAIL = 'workorbit@gmail.com'
 
 # Email Settings (Production)
-EMAIL_BACKEND = ''
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ""
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = ''
+# EMAIL_HOST = ''
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ""
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 
 #MEDIA FILES SET UP

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-
+import mailer
 
 urlpatterns = [
     path('', include('index.urls')),
@@ -24,6 +24,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('blog/', include('blog.urls')),
     path('api/v1/', include('blog.api.v1.routers.routers')), 
+    # path('', include('mailer.urls')), 
 ]
 
 
