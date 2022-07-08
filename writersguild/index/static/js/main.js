@@ -470,3 +470,92 @@
         
         
 })(jQuery);
+
+function test() {
+    console.log('this is a tesytckgt')
+    
+    //Assume form with id="theform"
+    var theForm = document.forms["orderForm"];
+    var quantity = theForm.elements["pages"];
+    pages = quantity.value;
+    console.log(pages)
+
+    console.log(getAcademic() + getDeadline())
+    total = getAcademic() + getDeadline()
+    grand_total = total * pages
+    console.log(grand_total)
+    var output = document.getElementById('output');
+    output.innerHTML = grand_total;
+}
+
+// Formcalculator function 
+function theForm() {
+    var theForm = document.forms["orderForm"];
+    console.log('Hello world, a test from main.js')
+}
+
+//candlesPrice() finds the candles price based on a check box selection
+function getAcademic()
+{
+    console.log('Im in the getAcademic function')
+    var academic_level= new Array();
+
+        academic_level["96035"]=1;
+        academic_level["96036"]=2;
+        academic_level["96037"]=3;
+        academic_level["96038"]=4;
+        academic_level["96039"]=5;
+
+    var academicchoice=0;
+    //Get a reference to the form id="cakeform"
+    var theForm = document.forms["orderForm"];
+
+    //Get a reference to the checkbox id="includecandles"
+    var academicchoice = theForm.elements["drop1"];
+    value = academic_level[academicchoice.value];
+
+    console.log(value)
+
+    return value;
+}
+
+function getDeadline()
+{
+    console.log('Im in the getDeadline function')
+    var Deadline = new Array();
+
+        Deadline["2681"]=59;
+        Deadline["2682"]=38;
+        Deadline["2684"]=26;
+        Deadline["2686"]=22;
+        Deadline["2688"]=18;
+        Deadline["2692"]=16;
+
+    var deadlinechoice = 0;
+    //Get a reference to the form id="cakeform"
+    var theForm = document.forms["orderForm"];
+    //Get a reference to the checkbox id="includecandles"
+    var deadlinechoice = theForm.elements["drop3"];
+    dline = Deadline[deadlinechoice.value];
+
+    console.log(dline)
+
+    return dline;
+}
+
+function amalgamate()
+{
+    var candlePrice=0;
+    //Get a reference to the form id="cakeform"
+    var theForm = document.forms["cakeform"];
+    //Get a reference to the checkbox id="includecandles"
+    var includeCandles = theForm.elements["includecandles"];
+
+    //If they checked the box set candlePrice to 5
+    if(includeCandles.checked==true)
+    {
+        candlePrice=5;
+    }
+    //finally we return the candlePrice
+    return candlePrice;
+}

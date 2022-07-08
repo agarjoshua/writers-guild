@@ -42,6 +42,645 @@
 
     <script src="{% static 'js/nav.js' %}"></script>
 
+    <style>
+        /*! CSS Used from: https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css */
+        .select select {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            align-items: center;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            box-shadow: none;
+            display: inline-flex;
+            font-size: 1rem;
+            height: 2.5em;
+            justify-content: flex-start;
+            line-height: 1.5;
+            padding-bottom: calc(.5em - 1px);
+            padding-left: calc(.75em - 1px);
+            padding-right: calc(.75em - 1px);
+            padding-top: calc(.5em - 1px);
+            position: relative;
+            vertical-align: top;
+        }
+
+        .select select:active,
+        .select select:focus {
+            outline: 0;
+        }
+
+        .select:not(.is-multiple):not(.is-loading)::after {
+            border: 3px solid transparent;
+            border-radius: 2px;
+            border-right: 0;
+            border-top: 0;
+            content: " ";
+            display: block;
+            height: .625em;
+            margin-top: -.4375em;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            transform: rotate(-45deg);
+            transform-origin: center;
+            width: .625em;
+        }
+
+        .title:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 100%;
+            font-weight: 400;
+        }
+
+        button,
+        input,
+        select {
+            margin: 0;
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        a {
+            color: #485fc7;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #363636;
+        }
+
+        span {
+            font-style: inherit;
+            font-weight: inherit;
+        }
+
+        .title {
+            word-break: break-word;
+        }
+
+        .title {
+            color: #363636;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.125;
+        }
+
+        .title.is-3 {
+            font-size: 2rem;
+        }
+
+        .title.is-4 {
+            font-size: 1.5rem;
+        }
+
+        .select select {
+            background-color: #fff;
+            border-color: #dbdbdb;
+            border-radius: 4px;
+            color: #363636;
+        }
+
+        .select select::-moz-placeholder {
+            color: rgba(54, 54, 54, .3);
+        }
+
+        .select select::-webkit-input-placeholder {
+            color: rgba(54, 54, 54, .3);
+        }
+
+        .select select:-moz-placeholder {
+            color: rgba(54, 54, 54, .3);
+        }
+
+        .select select:-ms-input-placeholder {
+            color: rgba(54, 54, 54, .3);
+        }
+
+        .select select:hover {
+            border-color: #b5b5b5;
+        }
+
+        .select select:active,
+        .select select:focus {
+            border-color: #485fc7;
+            box-shadow: 0 0 0 .125em rgba(72, 95, 199, .25);
+        }
+
+        .select {
+            display: inline-block;
+            max-width: 100%;
+            position: relative;
+            vertical-align: top;
+        }
+
+        .select:not(.is-multiple) {
+            height: 2.5em;
+        }
+
+        .select:not(.is-multiple):not(.is-loading)::after {
+            border-color: #485fc7;
+            right: 1.125em;
+            z-index: 4;
+        }
+
+        .select select {
+            cursor: pointer;
+            display: block;
+            font-size: 1em;
+            max-width: 100%;
+            outline: 0;
+        }
+
+        .select select::-ms-expand {
+            display: none;
+        }
+
+        .select select:not([multiple]) {
+            padding-right: 2.5em;
+        }
+
+        .select:not(.is-multiple):not(.is-loading):hover::after {
+            border-color: #363636;
+        }
+
+        .label {
+            color: #363636;
+            display: block;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .label:not(:last-child) {
+            margin-bottom: .5em;
+        }
+
+        .field:not(:last-child) {
+            margin-bottom: .75rem;
+        }
+
+        @media screen and (min-width:769px),
+        print {
+            .field-body {
+                display: flex;
+                flex-basis: 0;
+                flex-grow: 5;
+                flex-shrink: 1;
+            }
+        }
+
+        .control {
+            box-sizing: border-box;
+            clear: both;
+            font-size: 1rem;
+            position: relative;
+            text-align: inherit;
+        }
+
+        .mt-2 {
+            margin-top: .5rem !important;
+        }
+
+        .mr-3 {
+            margin-right: .75rem !important;
+        }
+
+        .mx-auto {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .my-auto {
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+        }
+
+        .has-text-centered {
+            text-align: center !important;
+        }
+
+        .has-text-weight-semibold {
+            font-weight: 600 !important;
+        }
+
+        /*! CSS Used from: https://essaywriters4me.com/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3 ; media=all */
+        @media all {
+            h2 {
+                overflow-wrap: break-word;
+            }
+        }
+
+        /*! CSS Used from: https://essaywriters4me.com/wp-content/themes/morningstar/style.css?ver=5.9.3 ; media=all */
+        @media all {
+
+            *,
+            :after,
+            :before {
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            h2 {
+                margin-top: 0;
+                margin-bottom: .5rem;
+            }
+
+            a {
+                color: #007bff;
+                text-decoration: none;
+                background-color: transparent;
+                -webkit-text-decoration-skip: objects;
+            }
+
+            a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+
+            label {
+                display: inline-block;
+                margin-bottom: .5rem;
+            }
+
+            button {
+                border-radius: 0;
+            }
+
+            button:focus {
+                outline: 1px dotted;
+                outline: 5px auto -webkit-focus-ring-color;
+            }
+
+            button,
+            input,
+            select {
+                margin: 0;
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+            }
+
+            button,
+            input {
+                overflow: visible;
+            }
+
+            button,
+            select {
+                text-transform: none;
+            }
+
+            [type=submit],
+            button,
+            html [type=button] {
+                -webkit-appearance: button;
+            }
+
+            [type=button]::-moz-focus-inner,
+            [type=submit]::-moz-focus-inner,
+            button::-moz-focus-inner {
+                padding: 0;
+                border-style: none;
+            }
+
+            h2 {
+                margin-bottom: .5rem;
+                font-family: inherit;
+                font-weight: 500;
+                line-height: 1.2;
+                color: inherit;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+                transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+                transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            }
+
+            @media screen and (prefers-reduced-motion:reduce) {
+                .btn {
+                    -webkit-transition: none;
+                    transition: none;
+                }
+            }
+
+            .btn:focus,
+            .btn:hover {
+                text-decoration: none;
+            }
+
+            .btn:focus {
+                outline: 0;
+                -webkit-box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+                box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+            }
+
+            .btn:disabled {
+                opacity: .65;
+            }
+
+            .btn-success {
+                color: #fff;
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+
+            .btn-success:hover {
+                color: #fff;
+                background-color: #218838;
+                border-color: #1e7e34;
+            }
+
+            .btn-success:focus {
+                -webkit-box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5);
+                box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5);
+            }
+
+            .btn-success:disabled {
+                color: #fff;
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+
+            .mt-2 {
+                margin-top: .5rem !important;
+            }
+
+            .mr-3 {
+                margin-right: 1rem !important;
+            }
+
+            .my-auto {
+                margin-top: auto !important;
+            }
+
+            .mx-auto {
+                margin-right: auto !important;
+            }
+
+            .my-auto {
+                margin-bottom: auto !important;
+            }
+
+            .mx-auto {
+                margin-left: auto !important;
+            }
+
+            @media print {
+
+                *,
+                :after,
+                :before {
+                    text-shadow: none !important;
+                    -webkit-box-shadow: none !important;
+                    box-shadow: none !important;
+                }
+
+                h2 {
+                    orphans: 3;
+                    widows: 3;
+                }
+
+                h2 {
+                    page-break-after: avoid;
+                }
+            }
+
+            * {
+                font-family: Lato, Open Sans, Helvetica, Verdana;
+            }
+
+            h2 {
+                font-size: 26px;
+                color: #1d1d5c;
+            }
+
+            a.btn {
+                font-size: 19px;
+                text-transform: uppercase;
+                border-radius: 3px;
+                text-align: center;
+                padding: 15px 0;
+                width: 215px;
+                position: relative;
+            }
+
+            a.btn:active,
+            a.btn:focus,
+            a.btn:hover {
+                border: none;
+                outline: none;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+            a.btn.btn-success {
+                background-color: #39B54A;
+                -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+                border: none;
+                outline: none;
+                margin-bottom: 5px;
+            }
+
+            a.btn.btn-success:active {
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+            }
+
+            a.btn.btn-success:active,
+            a.btn.btn-success:focus,
+            a.btn.btn-success:hover {
+                background-color: #39B54A !important;
+            }
+
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+        }
+
+        /*! CSS Used from: https://essaywriters4me.com/wp-content/themes/morningstar/css/calc.css?ver=5.9.3 ; media=all */
+        @media all {
+            .uvocalc--pages__buttons {
+                width: 100%;
+                margin-top: 5px;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                -ms-flex-align: center;
+                align-items: center;
+                background-color: #fff;
+                border-radius: 5px;
+                border: 1px solid #c5c5c5;
+            }
+
+            @media (max-width: 479px) {
+                .uvocalc--pages__buttons {
+                    width: 50%;
+                    margin-top: 0;
+                }
+            }
+
+            .uvocalc--pages__buttons button {
+                height: 38px;
+                width: 38px;
+                background-color: transparent;
+                border: 0;
+                padding: 0;
+                position: relative;
+                cursor: pointer;
+            }
+
+            .uvocalc--pages__buttons button:before {
+                content: "";
+                width: 1px;
+                position: absolute;
+                top: 6px;
+                right: 0;
+                bottom: 6px;
+                background-color: #c5c5c5;
+            }
+
+            .uvocalc--pages__buttons button:focus span,
+            .uvocalc--pages__buttons button:hover span {
+                background-color: #f2f2f2;
+            }
+
+            @media (max-width: 479px) {
+                .uvocalc--pages__buttons button {
+                    height: 43px;
+                }
+            }
+
+            .uvocalc--pages__buttons button span {
+                display: block;
+                height: 32px;
+                width: 32px;
+                margin: auto;
+                position: relative;
+                overflow: hidden;
+                text-indent: -50px;
+                border-radius: 5px;
+                -webkit-transition: background-color .3s ease;
+                transition: background-color .3s ease;
+                pointer-events: none;
+            }
+
+            .uvocalc--pages__buttons button span:before {
+                content: "";
+                width: 14px;
+                height: 2px;
+                background-color: #606b76;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+
+            @media (max-width: 479px) {
+                .uvocalc--pages__buttons button span {
+                    height: 38px;
+                }
+            }
+
+            .uvocalc--pages__buttons button[data-plus-button]:before {
+                left: 0;
+                right: auto;
+            }
+
+            .uvocalc--pages__buttons button[data-plus-button] span:after {
+                content: "";
+                width: 2px;
+                height: 14px;
+                background-color: #606b76;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+        }
+
+        /*! CSS Used from: Embedded */
+        .is-calc-price {
+            max-width: 350px;
+            position: relative;
+        }
+
+        .is-main-div {
+            padding: 24px 16px;
+            position: relative;
+            max-width: 350px;
+            border-radius: 16px;
+            background: #fff !important;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.4px);
+            -webkit-backdrop-filter: blur(6.4px);
+            border: 1px solid rgba(209, 219, 248, 0.2);
+        }
+
+        form .select,
+        form select {
+            width: 100% !important;
+        }
+
+        /*! CSS Used fontfaces */
+        @font-face {
+            font-family: Lato;
+            src: url("https://essaywriters4me.com/wp-content/themes/morningstar/fonts/Lato-Regular.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 400;
+        }
+    </style>
+
 </head>
 
 
@@ -53,17 +692,6 @@
     ================================================== -->
 
     <header class="s-header">
-        <!-- <div class="test">
-            <ul class="flat">
-                <li class="current"><a class="smoothscroll" href="#home" title="home">Home</a></li>
-                <li><a class="smoothscroll" href="#about" title="about">About</a></li>
-                <li><a class="smoothscroll" href="#services" title="services">Services</a></li>
-                <li><a class="smoothscroll" href="#works" title="works">Works</a></li>
-                <li><a class="smoothscroll" href="#clients" title="clients">Clients</a></li>
-                <li><a class="smoothscroll" href="#contact" title="contact">Contact</a></li>
-                <li><a class="smoothscroll" href="http://127.0.0.1:8000/blog/" title="contact">Blog</a></li>
-            </ul>
-        </div> -->
 
         <div class="nav mt-5 invisible md:visible">
             <div class="logo">
@@ -155,36 +783,184 @@
         <div class="shadow-overlay"></div>
 
         <div class="home-content">
+            <div class="md:flex flex-row place-items-center">
 
-            <div class="row home-content__main">
+                <div class="ml-7 pl-7 row home-content__main place-content-center md:col-span-6">
 
-                <h3>Welcome to Glint</h3>
+                    <h3 class="place-self-end">Welcome to Glint</h3>
 
-                <h1>
-                    We are a creative group <br>
-                    of people who design <br>
-                    influential brands and <br>
-                    digital experiences.
-                </h1>
+                    <h1>
+                        We are a creative group <br>
+                        of people who design <br>
+                        influential brands and <br>
+                        digital experiences.
+                    </h1>
 
-                <div class="home-content__buttons">
-                    <a href="#contact" class="smoothscroll btn btn--stroke">
-                        Start a Project
-                    </a>
-                    <a href="#about" class="smoothscroll btn btn--stroke">
-                        More About Us
-                    </a>
+                    <div class="home-content__buttons">
+                        <a href="#contact" class="smoothscroll btn btn--stroke">
+                            Start a Project
+                        </a>
+                        <a href="#about" class="smoothscroll btn btn--stroke">
+                            More About Us
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="row home-content__main columns-3 md:col-span-6">
+                    <div class="is-calc-price mx-auto" id="is-calc-price" data-v-app="">
+                        <div class="is-main-div">
+                            <h2 class="title is-4">Order NOW to get 25% Discount!</h2>
+                            <form action="/order" method="POST" id="orderForm">
+                                {% csrf_token %}
+                                <div class="field"><label class="label">Academic Level</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select name="drop1" id="drop1">
+                                                <option>Select academic level</option>
+                                                <option value="96035">High School</option>
+                                                <option value="96036">College</option>
+                                                <option value="96037">Undergraduate</option>
+                                                <option value="96038">Masters</option>
+                                                <option value="96039">PHD</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field"><label class="label">Type of paper</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select name="drop2" id="drop2">
+                                                <option>Select type of paper</option>
+                                                <option value="118205">Book Report</option>
+                                                <option value="118206">Book Review</option>
+                                                <option value="118207">Movie Review</option>
+                                                <option value="118208">Dissertation</option>
+                                                <option value="118209">Thesis</option>
+                                                <option value="118210">Thesis Proposal</option>
+                                                <option value="118211">Dissertation Chapter-Abstract</option>
+                                                <option value="118212">Dissertation Chapter-Introduction Chapter
+                                                </option>
+                                                <option value="118213">Dissertation Chapter-Literature Review</option>
+                                                <option value="118214">Dissertation Chapter-Methodology</option>
+                                                <option value="118215">Dissertation Chapter-Results</option>
+                                                <option value="118216">Dissertation Chapter-Discussion</option>
+                                                <option value="118217">Article Critique</option>
+                                                <option value="118218">Research Proposal</option>
+                                                <option value="118219">Case Study</option>
+                                                <option value="118220">Research Paper</option>
+                                                <option value="118221">Term Paper</option>
+                                                <option value="118222">Essay</option>
+                                                <option value="118223">Dissertation Services-Editing</option>
+                                                <option value="118224">Dissertation Services-Proofreading</option>
+                                                <option value="118225">Lab Report</option>
+                                                <option value="118226">Math Problem</option>
+                                                <option value="118227">Statistics Project</option>
+                                                <option value="118228">Multiple choice questions(None Time framed)
+                                                </option>
+                                                <option value="118229">Reaction Paper</option>
+                                                <option value="118230">Annotated Bibliography</option>
+                                                <option value="118231">Article</option>
+                                                <option value="118232">Speech Presentation</option>
+                                                <option value="118233">Proofreading</option>
+                                                <option value="118234">Editing</option>
+                                                <option value="118235">Formatting</option>
+                                                <option value="118236">Admission Services-Admission Essay</option>
+                                                <option value="118237">Admission Services-Scholarship Essay</option>
+                                                <option value="118238">Admission Services-Pesonal Statement</option>
+                                                <option value="118239">Admission Services-Editing</option>
+                                                <option value="118240">Coursework </option>
+                                                <option value="118241">Powerpoint Presentation </option>
+                                                <option value="118242">Other (Not listed) </option>
+                                                <option value="118243">Coursework AS and A-Level </option>
+                                                <option value="118244">Coursework GCSE </option>
+                                                <option value="118245">Assignment </option>
+                                                <option value="118246">Admission - Application Essay </option>
+                                                <option value="118247">Capstone Project</option>
+                                                <option value="118248">Discussion Post</option>
+                                                <option value="118249">Poster</option>
+                                                <option value="118250">Bronchure</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field"><label class="label">Deadline</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select name="drop3" id="drop3">
+                                                <option>Select deadline</option>
+                                                <option value="2681">3 hrs</option>
+                                                <option value="2682">8 hrs</option>
+                                                <option value="2684">24 hrs</option>
+                                                <option value="2686">3 days</option>
+                                                <option value="2688">7 days</option>
+                                                <option value="2692">14 days</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="label">Pages</div>
+                                    <div class="field-body">
+                                        <div class="uvocalc--pages__buttons">
+
+                                            <span>−</span>
+
+
+                                            <input name="pages" data-pages-input="" type="number" min="1"
+                                                placeholder="Number of pages" style="border: none !important;"
+                                                id="pages">
+
+                                            <span>-</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="label">Total Cost</div>
+                                    <button type="button" onclick="test()"> Calculate Value </button>
+                                    <div class="field-body">
+                                        <h4> Total Price: <div id="output"></div>USD
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="label">Your Email Address</div>
+                                    <div class="field-body">
+                                        <div class="uvocalc--pages__buttons">
+                                            <input name="email" data-pages-input="" placeholder="Your email address"
+                                                style="border: none !important;">
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="mt-2">
+                                    <!-- <div class="is-full has-text-centered">
+                                        <div class="has-text-weight-semibold title is-3 my-auto">$15.95</div>
+                                    </div> -->
+                                    <div class="is-full has-text-centered mt-2"><input type="submit" value="Order Now"
+                                            onclick="theForm()"> </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-            <div class="home-content__scroll">
-                <a href="#about" class="scroll-link smoothscroll">
-                    <span>Scroll Down</span>
-                </a>
-            </div>
 
-            <div class="home-content__line"></div>
+
+        </div>
+
+        <div class="home-content__scroll">
+            <a href="#about" class="scroll-link smoothscroll">
+                <span>Scroll Down</span>
+            </a>
+        </div>
+
+        <div class="home-content__line"></div>
 
         </div> <!-- end home-content -->
 
@@ -687,7 +1463,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="form-actions">
-              <button type="submit">Send</button>
+                <button type="submit">Send</button>
             </div>
         </form>
 
@@ -741,7 +1517,7 @@
                     Your message was sent, thank you!<br>
                 </div>
 
-            </div <div class="contact-secondary">
+            </div class="contact-secondary">
             <div class="contact-info">
 
                 <h3 class="h6 hide-on-fullwidth">Contact Info</h3>
@@ -795,7 +1571,7 @@
 
         </div> <!-- end contact-content -->
 
-       
+
     </section> <!-- end s-contact -->
 
 
@@ -921,6 +1697,29 @@
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 
+
+    <script src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+    <script>
+        function calculate() {
+            console.log('calculate')
+            var km = $('#km').val();
+            var euro = $('#euro').val();
+            var consumo = $('#consumo').val();
+            var cem_km = consumo * euro;
+            var fossil_day = (cem_km * km) / 100;
+
+            $('#fossil-day').html(fossil_day);
+
+        }
+
+        $(function () {
+            /*when #consumo input loses focus, as per original question*/
+            $('#consumo').blur(function () {
+                calculate();
+
+            });
+        });
+    </script>
 
 
 </body>

@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'blog.apps.BlogConfig',
     #EMAIL sending settings
-    'mailer.apps.MailerConfig'
+    # 'mailer.apps.MailerConfig'
 ]
 
 MIDDLEWARE = [
